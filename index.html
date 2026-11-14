@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel Lanches e Cia</title>
+</head>
+<body style="margin:0;font:17px/1.45 system-ui,sans-serif;background:#F1F3F6;color:#1F2329">
+<p id="espera" style="text-align:center;padding:48px 16px">Abrindo...</p>
+<script>
+// Busca a página de entrada (pública, sem dado nenhum) e põe no lugar desta. O painel mesmo só vem depois do login.
+fetch('https://ddeaezqgvdoymhqyhrmx.supabase.co/storage/v1/object/public/site/entrada.html', { cache: 'no-store' })
+  .then(function (r) { if (!r.ok) throw new Error('fora'); return r.text(); })
+  .then(function (t) { if (t.indexOf('</html>') < 0) throw new Error('incompleta'); document.open(); document.write(t); document.close(); })
+  .catch(function () { document.getElementById('espera').textContent = 'O site está fora do ar agora. Tente de novo em alguns minutos.'; });
+</script>
+</body>
+</html>
